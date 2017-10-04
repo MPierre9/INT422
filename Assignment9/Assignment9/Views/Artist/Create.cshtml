@@ -1,0 +1,230 @@
+﻿@model Assignment9.Controllers.ArtistAddForm
+
+@{
+    ViewBag.Title = "Create";
+}
+<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<style>
+    .fancy {
+        text-decoration: underline;
+        color: red;
+        font-family: Pacifico;
+    }
+
+    .backColor {
+        background: rgba(23, 23, 40, 0.4);
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    .button {
+        border-radius: 4px;
+        background: rgba(16, 44, 61,0.7);
+        border: none;
+        color: #4e5e91;
+        text-align: center;
+        font-size: 20px;
+        padding: 4px;
+        width: 100px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+    .button2 {
+        border-radius: 4px;
+        background: rgba(16, 44, 61,0.7);
+        border: none;
+        color: #4e5e91;
+        text-align: center;
+        font-size: 20px;
+        padding: 4px;
+        width: 300px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+    .button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+
+        .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+    .button:hover span {
+        padding-right: 25px;
+    }
+
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+
+
+    .button2 span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+
+        .button2 span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+    .button2:hover span {
+        padding-right: 25px;
+    }
+
+        .button2:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+    .button3 {
+        border-radius: 4px;
+        background: rgba(16, 44, 61,0.7);
+        border: none;
+        color: #4e5e91;
+        text-align: center;
+        font-size: 20px;
+        padding: 4px;
+        width: 150px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+
+        .button3 span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+            .button3 span:after {
+                content: '\00bb';
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: -20px;
+                transition: 0.5s;
+            }
+
+        .button3:hover span {
+            padding-right: 25px;
+        }
+
+            .button3:hover span:after {
+                opacity: 1;
+                right: 0;
+            }
+
+    a {
+        text-decoration: none;
+    }
+
+    .padTop {padding-top:50px;
+    }
+</style>
+
+<div class="backColor">
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <div class="padTop">
+        <h2>Create New Artist</h2>
+            </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BirthName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BirthName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BirthName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BirthOrStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BirthOrStartDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BirthOrStartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UrlArtist, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UrlArtist, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UrlArtist, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.GenreList, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+
+                @Html.DropDownList("GenreId", Model.GenreList, htmlAttributes: new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.GenreList, "", new { @class = "text-danger" })
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Portrayal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Portrayal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Portrayal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <script>CKEDITOR.replace('Portrayal');</script>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <button class="button2"><span>@Html.ActionLink("Back to List", "Index") </span></button>
+</div>
+    </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
